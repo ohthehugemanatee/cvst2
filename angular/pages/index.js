@@ -15,20 +15,22 @@
 
     });
 
-    app.directive('userForm', function() {
+    app.directive('userForm', ['$http', function($http) {
         return {
             restrict: 'E',
             templateUrl: 'angular/components/user-form.html',
             controller: function() {
-                this.user = {};
+                this.submission = {};
                 this.selectUser = function(target) {
-                    target.uid = this.user.uid;
-                    this.user = {};
+                    newuser = $http.get('https://www.drupal.org/api-d7/user.json?uid=' + this.submission.uid).success(function(data) {
+                        target = data.list[0];
+                    });
+                    this.submission = {};
                 };
             },
             controllerAs: 'userFormCtrl'
         };
-    });
+    }]);
 
     app.directive('userInfo', function() {
        return {
