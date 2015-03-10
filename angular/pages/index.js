@@ -28,14 +28,13 @@
             }
 
             // since the UID is numeric, let's make our API call.
-            $request = $http.get('https://www.drupal.org/api-d7/user.json', {
+            var request = $http.get('https://www.drupal.org/api-d7/user.json', {
                 params: {
                     uid: +uid
                 }
             });
             // When request changes state, either return the user object or reject.
-            $request.then(function(data) {
-                console.log(data);
+            return request.then(function(data) {
                if (data.data.list[0]) {
                    // if there's a result set, take the first result as our user object.
                    return data.data.list[0];
@@ -47,7 +46,6 @@
                 // http request failed, apparently.
                 return $q.reject(new Error("HTTP request failed with reason: " + reason));
             });
-            return Error('dunno what went wrong, boss...');
         }
     }]);
 
