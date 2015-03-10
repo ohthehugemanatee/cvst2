@@ -35,6 +35,7 @@
             });
             // When request changes state, either return the user object or reject.
             $request.then(function(data) {
+                console.log(data);
                if (data.data.list[0]) {
                    // if there's a result set, take the first result as our user object.
                    return data.data.list[0];
@@ -46,6 +47,7 @@
                 // http request failed, apparently.
                 return $q.reject(new Error("HTTP request failed with reason: " + reason));
             });
+            return Error('dunno what went wrong, boss...');
         }
     }]);
 
