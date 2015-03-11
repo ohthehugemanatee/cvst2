@@ -1,0 +1,22 @@
+{
+  "name": "drupal-grapher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohthehugemanatee/drupal-grapher.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ohthehugemanatee/drupal-grapher/issues"
+  },
+  "homepage": "https://github.com/ohthehugemanatee/drupal-grapher",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
