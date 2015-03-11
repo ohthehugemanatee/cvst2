@@ -23,12 +23,12 @@
 </head>
 <body role="document">
 <div class="container">
-    <div class="page-header well">
+    <div class="page-header jumbotron">
         <h1>Drupal Grapher</h1>
     </div>
-    <div class="container" ng-controller="UserController as userCtrl">
+    <div ng-controller="UserController as userCtrl">
         <user-form></user-form>
-        <user-info></user-info>
+        <user-info ng-show="user.uid"></user-info>
     </div>
 </div>
 
