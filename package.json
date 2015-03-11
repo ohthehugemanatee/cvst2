@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ohthehugemanatee/drupal-grapher",
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "grunt-wiredep": "^2.0.0"
   }
 }
