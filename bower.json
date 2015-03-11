@@ -1,0 +1,18 @@
+{
+  "name": "drupal-grapher",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ohthehugemanatee/drupal-grapher",
+  "authors": [
+    "Campbell Vertesi <campbell@vertesi.com>"
+  ],
+  "description": "Drupal graphing tool",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
