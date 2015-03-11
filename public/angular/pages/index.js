@@ -5,16 +5,6 @@
 (function(){
     var app = angular.module('drupalgrapher', []);
 
-    app.controller('UserController', function() {
-       this.activeUser =
-           {
-               name: 'Test User',
-               uid: '5',
-               url: 'https://drupal.org/user/5'
-           };
-
-    });
-
     /**
      * Service: DrupalOrgUser
      * Get a drupal user object from UID.
