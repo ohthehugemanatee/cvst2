@@ -15,5 +15,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-wiredep');
 
     // Default tasks
-    grunt.registerTask('default', ['wiredep'])
+    grunt.registerTask('default', ['wiredep']);
 };
