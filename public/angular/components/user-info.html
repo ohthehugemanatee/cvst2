@@ -1,13 +1,15 @@
-<h2>User Information for <span class="label label-primary">{{user.name}}</span></h2>
-        <table class="table table-condensed">
-            <tbody>
-            <tr>
-                <td><strong>UID</strong></td>
-                <td>{{user.uid}}</td>
-            </tr>
-            <tr>
-                <td><strong>URL</strong></td>
-                <td>{{user.url}}</td>
-            </tr>
-            </tbody>
-        </table>
+<div ng-repeat="user in users">
+    <h2>User Information for <span class="label label-primary">{{user.name}}</span></h2>
+    <table class="table table-condensed">
+        <tbody>
+        <tr>
+            <td><strong>UID</strong></td>
+            <td>{{user.uid}}</td>
+        </tr>
+        <tr>
+            <td><strong>URL</strong></td>
+            <td>{{user.url}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

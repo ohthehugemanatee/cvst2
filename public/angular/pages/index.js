@@ -11,18 +11,43 @@
      */
     app.factory('drupalOrgUser', ['$http', '$q', function ($http, $q) {
         // Get a user.
-        return function (uid) {
-            // If this was a non-numeric UID, reject the promise.
-            if (!isFinite(uid)) {
-                return $q.reject(new TypeError("UID should be numeric, got" + uid));
+        return function (uids) {
+            // Clear out any prior requests hanging around.
+            var request = array;
+
+            // Strip any whitespaces.
+            uids = uids.replace(' ', '');
+            // Make the list of UIDs into an array.
+            if (uids.indexOf(',') != -1) {
+                var uidArray = uids.split(",");
+            }
+            else {
+                var uidArray = array;
+                uidArray[0] = uids;
             }
 
-            // since the UID is numeric, let's make our API call.
-            var request = $http.get('https://www.drupal.org/api-d7/user.json', {
-                params: {
-                    uid: +uid
-                }
+            uidArray.forEach(function(uid) {
+               // If this was a non-numeric UID, reject the promise.
+               if (!isFinite(uid)) {
+                 return $q.reject(new TypeError("UIDs should be numeric, got" + uid));
+               }
+                /// Since the UID is numeric, let's make our API call.
+                // Multiple filter values aren't supported, so this has to happen in the loop. :(
+                var requests = array;
+                requests[] = $http.get('https://www.drupal.org/api-d7/user.json', {
+                    params: {
+                        uid: +uid
+                    }
+                });
             });
+
+
+            // What do I do here? I have an array of promises. I should start returning right away and just adding to
+            // the array of results. I think Angular's 2 way data binding will just update the results as they come in... right?
+            // maybe what I really need is a controller to take the form input and run the service once for each UID,
+            // dumping returns into the array. Yeah, that sounds right...
+
+
             // When request changes state, either return the user object or reject.
             return request.then(function(data) {
                if (data.data.list[0]) {
