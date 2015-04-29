@@ -1,16 +1,15 @@
 /**
- * Created by ohthehugemanatee on 20/02/15.
+ * Created by ohthehugemanatee
  */
 
 (function(){
     var app = angular.module('statevsstate', []);
 
     /**
-     * Service: DrupalOrgUser
-     * Get a drupal user object from UID.
+     * Service: USStates
+     * Get a US state object from state ID.
      */
     app.factory('USStates', ['$http', '$q', function ($http, $q) {
-        // Get a user.
         return function (stateid) {
             // Make the API call.
             var request = $http.get('http://10.11.12.14/states.json', {
@@ -18,7 +17,7 @@
                     stateid: +stateid
                 }
             });
-            // When request changes state, either return the user object or reject.
+            // When request changes state, either return the state object or reject.
             return request.then(function(data) {
                if (data.data.list[0]) {
                    // if there's a result set, take the first result as our state object.
@@ -36,7 +35,7 @@
 
     /**
      * Directive: USStateController
-     * Take the form input Event and use it to dump the user object into $scope.
+     * Take the form input Event and use it to dump the state object into $scope.
      */
     app.controller('USStateController', ['$scope', 'USStates', function($scope, getState) {
         $scope.selectStates = function($event) {
