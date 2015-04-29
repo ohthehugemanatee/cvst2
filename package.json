@@ -18,6 +18,6 @@
   "homepage": "https://github.com/ohthehugemanatee/drupal-grapher",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-bower-concat": "^0.4.0",
+    "grunt-bower-concat": "^0.4.0"
   }
 }
