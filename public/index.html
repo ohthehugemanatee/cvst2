@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="drupalgrapher">
+<html lang="en" ng-app="statevsstate">
 <head>
     <meta charset="utf8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
@@ -14,17 +14,42 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <title>Drupal Grapher</title>
+    <title>State vs State</title>
 </head>
 <body role="document">
 <div class="container">
     <div class="page-header jumbotron">
-        <h1>Drupal Grapher</h1>
+        <h1>State vs State</h1>
     </div>
-    <div ng-controller="UserController as userCtrl">
-        <user-form></user-form>
-        <user-info ng-show="user.uid"></user-info>
-    </div>
+    <div ng-controller="USStateController as usStateCtrl">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Select two US States</h3>
+            </div>
+            <div class="panel-body">
+                <form name="usStateForm" ng-submit="selectState($event)" novalidate>
+                    <input type="text" placeholder="State 3 character abbreviation" ng-model="stateid1" required></textarea>
+                    <input type="text" placeholder="State 3 character abbreviation" ng-model="stateid2" required></textarea>
+                    <button type="submit" class="btn btn-primary" value="update">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div ng-repeat="user in users">
+            <h2>User Information for <span class="label label-primary">{{user.name}}</span></h2>
+            <table class="table table-condensed">
+                <tbody>
+                <tr>
+                    <td><strong>UID</strong></td>
+                    <td>{{user.uid}}</td>
+                </tr>
+                <tr>
+                    <td><strong>URL</strong></td>
+                    <td>{{user.url}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>    </div>
 </div>
 <!-- My angular modules -->
 <script src="angular/pages/index.js"></script>
