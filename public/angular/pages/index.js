@@ -3,7 +3,7 @@
  */
 
 (function(){
-    var app = angular.module('drupalgrapher', []);
+    var app = angular.module('statevsstate', []);
 
     /**
      * Service: DrupalOrgUser
