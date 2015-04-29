@@ -35,21 +35,45 @@
             </div>
         </div>
 
-        <div ng-repeat="user in users">
-            <h2>User Information for <span class="label label-primary">{{user.name}}</span></h2>
-            <table class="table table-condensed">
-                <tbody>
-                <tr>
-                    <td><strong>UID</strong></td>
-                    <td>{{user.uid}}</td>
-                </tr>
-                <tr>
-                    <td><strong>URL</strong></td>
-                    <td>{{user.url}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>    </div>
+        <div class="states">
+            <div class="state1" ng-show="state1">
+                <h2><span class="label label-primary">{{state1.name}}</span></h2>
+                <table class="table table-condensed">
+                    <tbody>
+                    <tr>
+                        <td><strong>UID</strong></td>
+                        <td>{{user.uid}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>URL</strong></td>
+                        <td>{{user.url}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="versus">VS.</div>
+
+            <div class="state2" ng-show="state2">
+                <h2><span class="label label-primary">{{state2.name}}</span></h2>
+                <table class="table table-condensed">
+                    <tbody>
+                    <tr>
+                        <td><strong>Toilets per capita</strong></td>
+                        <td>{{state2.toilets}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Obesity per capita</strong></td>
+                        <td>{{state2.obesity}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="winner">
+            </div>
+        </div>
+    </div>
 </div>
 <!-- My angular modules -->
 <script src="angular/pages/index.js"></script>
