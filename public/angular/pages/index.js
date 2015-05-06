@@ -54,5 +54,21 @@
             });
         }
     }]);
+		
+    /**
+     * Service: USStatesList
+     * Get a US statelist.
+     */
+    app.factory('USStatesList', ['$scope','$http', function ($scope, $http) {
+			$scope.stateslist = [];
+	
+			$http({
+				method: 'GET',
+				url: '/stateslist.json'
+			}).success(function (result) {
+			$scope.stateslist = result;
+			console.log(result);
+			});
+		}]);
 
 })();
