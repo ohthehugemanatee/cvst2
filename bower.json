@@ -18,7 +18,8 @@
   "dependencies": {
     "angular": ">1.4.0-beta.5",
     "angular-ui-router": "~0.2.13",
-    "bootstrap": "~3.3.2"
+    "bootstrap": "~3.3.2",
+    "bootstrap-material-design": "~0.3.0"
   },
   "main": "public/index.html"
 }

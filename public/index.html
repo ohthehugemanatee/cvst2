@@ -18,8 +18,17 @@
 </head>
 <body role="document">
 <div class="container">
-    <div class="page-header jumbotron">
-        <h1>State vs State</h1>
+    <div class="page-header jumbotron text-center">
+        <h1><span class="text-danger"><b>State</b></span> vs. <span class="text-info"><b>State</b></span></h1>
+				<h3>Ultimate Grudge Smackdown Fight to the Death</h3>
+				<div>
+					<i class="mdi-action-stars"></i>
+					<i class="mdi-action-stars"></i>
+					<i class="mdi-action-stars"></i>
+					<i class="mdi-action-stars"></i>
+					<i class="mdi-action-stars"></i>
+				</div>
+
     </div>
     <div ng-controller="USStateController as usStateCtrl">
         <div class="panel panel-primary">
@@ -30,13 +39,13 @@
                 <form name="usStateForm" ng-submit="selectState($event)" novalidate>
                     <input type="text" placeholder="State 3 character abbreviation" ng-model="stateid1" required></textarea>
                     <input type="text" placeholder="State 3 character abbreviation" ng-model="stateid2" required></textarea>
-                    <button type="submit" class="btn btn-primary" value="update">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-material-deep-purple" value="update">Submit</button>
                 </form>
             </div>
         </div>
 
         <div class="states">
-            <div class="state1" ng-show="state1">
+            <div class="state1 card" ng-show="state1">
                 <h2><span class="label label-primary">{{state1.name}}</span></h2>
                 <table class="table table-condensed">
                     <tbody>
@@ -54,7 +63,7 @@
 
             <div class="versus" ng-show="state1 && state2">VS.</div>
 
-            <div class="state2" ng-show="state2">
+            <div class="state2 card" ng-show="state2">
                 <h2><span class="label label-primary">{{state2.name}}</span></h2>
                 <table class="table table-condensed">
                     <tbody>
