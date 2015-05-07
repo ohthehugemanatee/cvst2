@@ -62,7 +62,7 @@
      * Get a US statelist.
      **/
     app.factory('USStatesList', ['$http', '$q', function ($http, $q) {
-        return function (stateid) {
+        return function (stateslist) {
             // Make the API call.
             var request = $http.get('http://cvst-backend.dev.nodesymphony.com/states');
 
