@@ -28,7 +28,7 @@
 		</div>
 		<h3><em>Ultimate Grudge Smackdown Fight to the Death</em></h3>
 	</div>
-	<div ng-controller="USStateController as usStateCtrl">
+	<div ng-controller="USStateController as usStateCtrl" class="col-lg-12">
 		<form name="usStateForm" ng-submit="selectState($event)" novalidate>
 			<div class="col-lg-6">
 				<div class="panel panel-primary panel-material-blue text-center">
@@ -36,7 +36,7 @@
 						<div class="panel-title"><strong>Select a US State</strong></div>
 					</div>
 					<div class="panel-body">
-						<select ng-model="stateid1" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
+						<select class="form-control" ng-init="stateid1='bug'" ng-model="stateid1" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
 					</div>
 			</div>
 			</div>
@@ -46,16 +46,16 @@
 						<div class="panel-title"><strong>Select another US State</strong></div>
 					</div>
 					<div class="panel-body">
-						<select ng-model="stateid2" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
+						<select class="form-control" ng-model="stateid2" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-12 text-center">
-				<button type="submit" class="btn btn-primary btn-lg" value="update">Submit</button>
+				<button type="submit" class="btn btn-primary btn-lg btn-success" value="update">Fight!</button>
 			</div>
 		</form>
 
-		<div class="states col-lg-12">
+		<div class="states">
 			<div class="state1 col-lg-5"><!-- ng-show="state1" -->
 				<div class="panel panel-primary panel-material-blue">
 					<div class="panel-heading text-center text-uppercase">
