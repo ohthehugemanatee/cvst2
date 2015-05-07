@@ -38,7 +38,9 @@
      * Take the form input Event and use it to dump the state object into $scope.
      */
     app.controller('USStateController', ['$scope', 'USStates', 'USStatesList', function($scope, getState, getStatesList) {
-        $scope.stateslist = getStatesList();
+        getStatesList().then(function (states) {
+            $scope.stateslist = states;
+        });
 
         $scope.selectStates = function($event) {
             // Don't fire if it's the default value, or if the form is invalid.
@@ -68,7 +70,7 @@
 
             // When request changes state, either return the state object or reject.
             return request.then(function(data) {
-                console.log(data.data);
+                //console.log(data.data);
                 if (data.data[0]) {
                     // if there's a result set, take it..
                     return data.data;
