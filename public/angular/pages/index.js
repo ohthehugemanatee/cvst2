@@ -21,11 +21,13 @@
                 return;
             }
 
-            getState($scope.stateid1).then(function(state) {
+            getState.getter($scope.stateid1).then(function(data) {
+                var state = getState.reducer(data);
                 $scope.state1 = state;
             });
 
-            getState($scope.stateid2).then(function(state) {
+            getState.getter($scope.stateid2).then(function(data) {
+                var state = getState.reducer(data);
                 $scope.state2 = state;
             });
         }
@@ -63,7 +65,8 @@
      * Get a US state object from state ID.
      */
     app.factory('USStates', ['$http', '$q', function ($http, $q) {
-        return function (stateid) {
+        var service = {};
+        service.getter = function (stateid) {
             // Make the API call.
             var request = $http.get('http://cvst-backend.dev.nodesymphony.com/state-data/', {
                 params: {
@@ -83,7 +86,45 @@
                 // http request failed, apparently.
                 return $q.reject(new Error("HTTP request failed with reason: " + reason));
             });
-        }
+        };
+
+        // Takes a multi-node result set and reduces it down to a single object, handling duplicate fields reasonably.
+        service.reducer = function (data) {
+            var reduced = {};
+            // Iterate over the nodes.
+            for (var result in data) {
+                if (data[result]) {
+                    // Iterate over the fields.
+                    for (key in data[result]) {
+                        // If the field isn't empty, add it to the "reduced" array.
+                        if (data[result][key].length > 0) {
+                            var value = data[result][key];
+                            if (!reduced[key]) {
+                                // If we don't have a value for this field yet, just set it.
+                                reduced[key] = value;
+                            }
+                            else {
+                                // We already have a value for this field, so try appending numbers to the field name until
+                                // we find one that's not set yet. So duplicate values will look like reduced.field_value and
+                                // reduced.field_value2.
+                                var i = 0;
+                                while (data[result][key]) {
+                                    var ourkey = key +i;
+                                    if (!reduced[ourkey]) {
+                                        reduced[ourkey] = value;
+                                        data[result][key] = null;
+                                    }
+                                    i++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return reduced;
+        };
+        return service;
+
     }]);
 
 })();
