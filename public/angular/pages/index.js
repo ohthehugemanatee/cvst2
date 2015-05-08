@@ -84,7 +84,14 @@
 
             }
             // Stick value in scope to tell who won.
-            $scope.winner = Math.max.apply( Math, score );
+            var hiscore = 0;
+            var leader = 1;
+            for (current in score) {
+                if (score[current] > score[leader]) {
+                    leader = current;
+                }
+            }
+            $scope.winner = leader;
         };
         return service;
     }]);
