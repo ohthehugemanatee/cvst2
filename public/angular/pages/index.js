@@ -9,7 +9,7 @@
      * Directive: USStateController
      * Take the form input Event and use it to dump the state object into $scope.
      */
-    app.controller('USStateController', ['$scope', 'USStates', 'USStatesList', function($scope, getState, getStatesList) {
+    app.controller('USStateController', ['$scope', 'USStates', 'USStatesList', 'winnerTally', function($scope, getState, getStatesList, getTally) {
         getStatesList().then(function (states) {
             $scope.stateslist = states;
         });
@@ -24,22 +24,29 @@
             getState.getter($scope.stateid1).then(function(data) {
                 var state = getState.reducer(data);
                 $scope.state1 = state;
+                if ($scope.stateid1 && $scope.stateid2) {
+                    getTally.tally($scope.state1, $scope.state2);
+                }
             });
 
             getState.getter($scope.stateid2).then(function(data) {
                 var state = getState.reducer(data);
                 $scope.state2 = state;
-            });
+                if ($scope.stateid1 && $scope.stateid2) {
+                    getTally.tally($scope.state1, $scope.state2);
+                }
+            }
         }
     }]);
 
     /**
-     * Directive: WinnerController
+     * Service: WinnerTally
      * Compare the two sets of state results and declare an overall winner.
      */
-    app.controller('winnerController', ['$scope', function ($scope) {
+    app.factory('winnerTally', ['$scope', function ($scope) {
+        var service = {};
         // Compare two values, and pick a winner. Returns 1 or 2 for a winner, 3 for a tie.
-        function vote(value1, value2) {
+        service.vote = function (value1, value2) {
             if (value1 > value2) {
                 return 1;
             }
@@ -48,10 +55,10 @@
             }
             // neither matched, this must be a tie.
             return 3;
-        }
+        };
 
         // take two state results and tally the votes.
-        function tally(state1, state2) {
+        service.tally = function (state1, state2) {
             var score;
             for (key in state1) {
                 // Get the winner from each field.
@@ -69,9 +76,11 @@
             }
             // Stick value in scope to tell who won.
             $scope.winner = Math.max.apply( Math, score );
-        }
+        };
+        return service;
     }]);
-		
+
+
     /**
      * Service: USStatesList
      * Get a US statelist.
