@@ -32,6 +32,45 @@
             });
         }
     }]);
+
+    /**
+     * Directive: WinnerController
+     * Compare the two sets of state results and declare an overall winner.
+     */
+    app.controller('winnerController', ['$scope', function ($scope) {
+        // Compare two values, and pick a winner. Returns 1 or 2 for a winner, 3 for a tie.
+        function vote(value1, value2) {
+            if (value1 > value2) {
+                return 1;
+            }
+            if (value1 < value2) {
+                return 2;
+            }
+            // neither matched, this must be a tie.
+            return 3;
+        }
+
+        // take two state results and tally the votes.
+        function tally(state1, state2) {
+            var score;
+            for (key in state1) {
+                // Get the winner from each field.
+                this.vote(state1[key], state2[key]).then(function(result) {
+                    // Add the point to the scoreboard.
+                    score[result]++;
+                    if (result == 3) {
+                        $scope[state1][key].winner = 'tie';
+                        $scope[state2][key].winner = 'tie';
+                    }
+                    else {
+                        $scope['state' + result][key].winner = true;
+                    }
+                });
+            }
+            // Stick value in scope to tell who won.
+            $scope.winner = Math.max.apply( Math, score );
+        }
+    }]);
 		
     /**
      * Service: USStatesList
