@@ -35,7 +35,7 @@
                 if ($scope.stateid1 && $scope.stateid2) {
                     getTally.tally($scope.state1, $scope.state2);
                 }
-            }
+            });
         }
     }]);
 
