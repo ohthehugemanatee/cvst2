@@ -12,16 +12,16 @@
     app.factory('USStates', ['$http', '$q', function ($http, $q) {
         return function (stateid) {
             // Make the API call.
-            var request = $http.get('http://10.11.12.14/states.json', {
+            var request = $http.get('http://cvst-backend.dev.nodesymphony.com/state-data/', {
                 params: {
                     stateid: +stateid
                 }
             });
             // When request changes state, either return the state object or reject.
-            return request.then(function(data) {
-               if (data.data.list[0]) {
-                   // if there's a result set, take the first result as our state object.
-                   return data.data.list[0];
+            return request.then(function(result) {
+               if (result.data) {
+                   // If there's a result set, return it.
+                   return result.data;
                } else {
                    // even though $http.get was successful, we got no results. What a let down.
                    return $q.reject(new Error("No state with state ID " + stateid));
@@ -42,7 +42,7 @@
             $scope.stateslist = states;
         });
 
-        $scope.selectStates = function($event) {
+        $scope.selectState = function($event) {
             // Don't fire if it's the default value, or if the form is invalid.
             $event.preventDefault();
             if (!$scope.usStateForm.$valid) {
