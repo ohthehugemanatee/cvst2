@@ -59,20 +59,29 @@
 
         // take two state results and tally the votes.
         service.tally = function (state1, state2) {
-            var score;
+            var score = {
+                1:0,
+                2:0,
+                3:0
+            };
             for (key in state1) {
                 // Get the winner from each field.
-                this.vote(state1[key], state2[key]).then(function(result) {
-                    // Add the point to the scoreboard.
-                    score[result]++;
-                    if (result == 3) {
-                        $scope[state1][key].winner = 'tie';
-                        $scope[state2][key].winner = 'tie';
-                    }
-                    else {
-                        $scope['state' + result][key].winner = true;
-                    }
-                });
+                var result = this.vote(state1[key], state2[key]);
+                // Add the point to the scoreboard.
+                score[result]++;
+                // Set a variable to indicate when a state wins.
+                if (result = 3) {
+                    $scope[state1][key][winner] = 'tie';
+                }
+                score[result]++;
+                if (result == 3) {
+                    $scope[state1][key].winner = 'tie';
+                    $scope[state2][key].winner = 'tie';
+                }
+                else {
+                    $scope['state' + result][key].winner = true;
+                }
+
             }
             // Stick value in scope to tell who won.
             $scope.winner = Math.max.apply( Math, score );
