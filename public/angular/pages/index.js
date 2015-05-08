@@ -6,34 +6,6 @@
     var app = angular.module('statevsstate', []);
 
     /**
-     * Service: USStates
-     * Get a US state object from state ID.
-     */
-    app.factory('USStates', ['$http', '$q', function ($http, $q) {
-        return function (stateid) {
-            // Make the API call.
-            var request = $http.get('http://cvst-backend.dev.nodesymphony.com/state-data/', {
-                params: {
-                    stateid: +stateid
-                }
-            });
-            // When request changes state, either return the state object or reject.
-            return request.then(function(result) {
-               if (result.data) {
-                   // If there's a result set, return it.
-                   return result.data;
-               } else {
-                   // even though $http.get was successful, we got no results. What a let down.
-                   return $q.reject(new Error("No state with state ID " + stateid));
-               }
-            }, function(reason) {
-                // http request failed, apparently.
-                return $q.reject(new Error("HTTP request failed with reason: " + reason));
-            });
-        }
-    }]);
-
-    /**
      * Directive: USStateController
      * Take the form input Event and use it to dump the state object into $scope.
      */
@@ -77,6 +49,35 @@
                 } else {
                     // even though $http.get was successful, we got no results. What a let down.
                     return $q.reject(new Error("No results returned for the states list."));
+                }
+            }, function(reason) {
+                // http request failed, apparently.
+                return $q.reject(new Error("HTTP request failed with reason: " + reason));
+            });
+        }
+    }]);
+
+
+    /**
+     * Service: USStates
+     * Get a US state object from state ID.
+     */
+    app.factory('USStates', ['$http', '$q', function ($http, $q) {
+        return function (stateid) {
+            // Make the API call.
+            var request = $http.get('http://cvst-backend.dev.nodesymphony.com/state-data/', {
+                params: {
+                    stateid: +stateid
+                }
+            });
+            // When request changes state, either return the state object or reject.
+            return request.then(function(result) {
+                if (result.data) {
+                    // If there's a result set, return it.
+                    return result.data;
+                } else {
+                    // even though $http.get was successful, we got no results. What a let down.
+                    return $q.reject(new Error("No state with state ID " + stateid));
                 }
             }, function(reason) {
                 // http request failed, apparently.
