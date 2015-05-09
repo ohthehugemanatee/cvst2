@@ -33,15 +33,15 @@
 
 		<div class="states">
 			<div class="state1 col-lg-5"><!-- ng-show="state1" -->
-				<div class="panel panel-primary panel-material-blue">
-                    <state-result state="statedata.state1" winner="winner"></state-result>
+				<div class="panel panel-primary panel-material-blue" ng-class="{ winner : winner.victory == 1 }">
+                    <state-result state="statedata.state1" winner="winner" ng-class="{winner: $==selectedIndex}"></state-result>
 				</div>
 			</div>
 
 			<div class="versus h1 col-lg-2 text-center">VS.</div><!-- ng-show="state1 && state2" -->
 
 			<div class="state1 col-lg-5"><!-- ng-show="state1" -->
-				<div class="panel panel-primary panel-material-red">
+				<div class="panel panel-primary panel-material-red" ng-class="{ winner : winner.victory == 2 }">
                     <state-result state="statedata.state2" winner="winner"></state-result>
 				</div>
 			</div>
