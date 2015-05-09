@@ -71,7 +71,7 @@
             scope: {
                 state: '=',
                 winner: '='
-            },
+            }
         }
     }]);
 
@@ -98,10 +98,11 @@
             if (!state1 || !state2) {
                 return;
             }
-            if (state1 == {} || state2 == {}) {
-                //only run the tally if both values are defined.
-                return;
-            }
+
+            // Set statenum for convenience.
+            state1["statenum"] = 1;
+            state2["statenum"] = 2;
+
             var score = {
                 1:0,
                 2:0,

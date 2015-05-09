@@ -4,11 +4,11 @@
 <div class="panel-body">
     <table class="table table-striped table-hover">
         <tbody>
-        <tr>
+        <tr ng-class="{ 'winning-row' : winner.field_fiber == state.statenum }">
             <td><strong>Fiber optic connections</strong></td>
             <td>{{state.field_fiber}}</td>
         </tr>
-        <tr>
+        <tr ng-class="{ 'winning-row' : winner.field_cable_modems == state.statenum }">
             <td><strong>Cable modems</strong></td>
             <td>{{state.field_cable_modems}}</td>
         </tr>
