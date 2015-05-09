@@ -102,21 +102,15 @@
                 3:0
             };
 
+            var winner = {};
+
             for (var key in state1) {
                 // Get the winner from each field.
                 var result = this.vote(state1[key], state2[key]);
                 // Add the point to the scoreboard.
                 score[result]++;
                 // Set a variable to indicate when a state wins for each field.
-                state1["winner"] = {};
-                state2["winner"] = {};
-                if (result == 3) {
-                    state1["winner"][key] = true;
-                    state2["winner"][key] = true;
-                }
-                else {
-                   window['state' + result]["winner"][key] = true;
-                }
+                winner[key] = result;
             }
             // Set a variable to indicate who wins overall.
             var hiscore = 0;
@@ -126,9 +120,8 @@
                     leader = current;
                 }
             }
-            console.log('score', score);
-            console.log('leader', leader);
-            window['state' + leader].victory = true;
+            winner["victory"] = leader;
+            console.log('winner', winner);
         };
         return service;
     });
