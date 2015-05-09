@@ -6,36 +6,54 @@
     var app = angular.module('statevsstate', []);
 
     /**
-     * Directive: USStateController
-     * Take the form input Event and use it to dump the state object into $scope.
+     * Controller: USStateController
+     *
      */
-    app.controller('USStateController', ['$scope', 'USStates', 'USStatesList', 'winnerTally', function($scope, getState, getStatesList, getTally) {
+    app.controller('USStateController', ["$scope", 'USStatesList', function($scope, getStatesList) {
         getStatesList().then(function (states) {
             $scope.stateslist = states;
         });
 
-        $scope.selectState = function($event) {
-            // Don't fire if it's the default value, or if the form is invalid.
-            $event.preventDefault();
-            if (!$scope.usStateForm.$valid) {
-                return;
+        $scope.stateid1 = '';
+        $scope.stateid2 = '';
+
+        $scope.state1 = {};
+        $scope.state2 = {};
+
+    }]);
+
+    /**
+     * Directive: stateForm
+     * Take the form input Event and use it to dump the state object into $scope.
+     */
+    app.directive('stateForm', ['USStates', function(USStates) {
+        return {
+            restrict: 'E',
+            templateUrl: 'angular/elements/state-form.html',
+            scope: {
+                stateslist: '=',
+                state1: '=',
+                state2: '='
+            },
+            controller: function($scope, USStates) {
+                $scope.selectState = function ($event) {
+                    // Don't fire if it's the default value, or if the form is invalid.
+                    $event.preventDefault();
+                    if (!$scope.usStateForm.$valid) {
+                        return;
+                    }
+
+                    USStates.getter($scope.stateid1).then(function (data) {
+                        var state = USStates.reducer(data);
+                        $scope.state1 = state;
+                    });
+
+                    USStates.getter($scope.stateid2).then(function (data) {
+                        var state = USStates.reducer(data);
+                        $scope.state2 = state;
+                    });
+                }
             }
-
-            getState.getter($scope.stateid1).then(function(data) {
-                var state = getState.reducer(data);
-                $scope.state1 = state;
-                if ($scope.stateid1 && $scope.stateid2) {
-                    getTally.tally($scope.state1, $scope.state2);
-                }
-            });
-
-            getState.getter($scope.stateid2).then(function(data) {
-                var state = getState.reducer(data);
-                $scope.state2 = state;
-                if ($scope.stateid1 && $scope.stateid2) {
-                    getTally.tally($scope.state1, $scope.state2);
-                }
-            });
         }
     }]);
 
