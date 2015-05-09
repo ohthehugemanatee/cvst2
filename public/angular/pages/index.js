@@ -17,9 +17,7 @@
         $scope.stateid1 = '';
         $scope.stateid2 = '';
 
-        $scope.state1 = {};
-        $scope.state2 = {};
-
+        $scope.statedata = {};
     }]);
 
     /**
@@ -32,10 +30,10 @@
             templateUrl: 'angular/elements/state-form.html',
             scope: {
                 stateslist: '=',
-                state1: '=',
-                state2: '='
+                statedata: '='
             },
             controller: function($scope, USStates, winnerTally) {
+                console.log('statedata at the beginning of the form', $scope.statedata);
                 $scope.selectState = function ($event) {
                     // Don't fire if it's the default value, or if the form is invalid.
                     $event.preventDefault();
@@ -45,15 +43,20 @@
 
                     USStates.getter($scope.stateid1).then(function (data) {
                         var state = USStates.reducer(data);
-                        $scope.state1 = state;
+                        $scope["statedata"]["state1"] = state;
+                        //if ($scope["statedata"]["state1"] && $scope["statedata"]["state2"]) {
+                          //  console.log('watch got fired, all right!');
+                        $scope["winner"] = winnerTally.tally($scope["statedata"]["state1"], $scope["statedata"]["state2"]);
+                        //}
                     });
 
                     USStates.getter($scope.stateid2).then(function (data) {
                         var state = USStates.reducer(data);
-                        $scope.state2 = state;
+                        $scope["statedata"]["state2"] = state;
+                        $scope["winner"] = winnerTally.tally($scope["statedata"]["state1"], $scope["statedata"]["state2"]);
+
                     });
 
-                    winnerTally.tally($scope.state1, $scope.state2);
 
 
                 }
@@ -70,7 +73,11 @@
             restrict: 'E',
             templateUrl: 'angular/elements/state-result.html',
             scope: {
-                state: '='
+                state: '=',
+                winner: '='
+            },
+            controller: function($scope) {
+                console.log('the winner is:', $scope.winner);
             }
         }
     }]);
@@ -95,6 +102,11 @@
 
         // take two state results and tally the votes.
         service.tally = function (state1, state2) {
+            if (!state1 || !state2) {
+                console.log('cowardly refusing to compare against a non-entity.');
+                return;
+            }
+            console.log('state1:', state1, 'state2', state2);
             if (state1 == {} || state2 == {}) {
                 //only run the tally if both values are defined.
                 return;
@@ -126,6 +138,7 @@
                 }
             }
             winner["victory"] = leader;
+            return winner;
         };
         return service;
     });
