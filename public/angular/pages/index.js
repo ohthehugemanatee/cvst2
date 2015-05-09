@@ -84,10 +84,10 @@
         var service = {};
         // Compare two values, and pick a winner. Returns 1 or 2 for a winner, 3 for a tie.
         service.vote = function (value1, value2) {
-            if (value1 > value2) {
+            if (parseFloat(value1) > parseFloat(value2)) {
                 return 1;
             }
-            if (value1 < value2) {
+            if (parseFloat(value1) < parseFloat(value2)) {
                 return 2;
             }
             // neither matched, this must be a tie.
