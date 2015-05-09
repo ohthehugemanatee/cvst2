@@ -46,15 +46,14 @@
                     USStates.getter($scope.stateid1).then(function (data) {
                         var state = USStates.reducer(data);
                         $scope.state1 = state;
-                        winnerTally.tally($scope.state1, $scope.state2);
                     });
 
                     USStates.getter($scope.stateid2).then(function (data) {
                         var state = USStates.reducer(data);
                         $scope.state2 = state;
-                        winnerTally.tally($scope.state1, $scope.state2);
                     });
 
+                    winnerTally.tally($scope.state1, $scope.state2);
 
 
                 }
@@ -96,6 +95,10 @@
 
         // take two state results and tally the votes.
         service.tally = function (state1, state2) {
+            if (state1 == {} || state2 == {}) {
+                //only run the tally if both values are defined.
+                return;
+            }
             var score = {
                 1:0,
                 2:0,
@@ -105,6 +108,9 @@
             var winner = {};
 
             for (var key in state1) {
+                if (key == 'name') {
+                    continue;
+                }
                 // Get the winner from each field.
                 var result = this.vote(state1[key], state2[key]);
                 // Add the point to the scoreboard.
@@ -113,15 +119,13 @@
                 winner[key] = result;
             }
             // Set a variable to indicate who wins overall.
-            var hiscore = 0;
             var leader = 1;
             for (current in score) {
-                if (score[current] > leader) {
+                if (score[current] > score[leader]) {
                     leader = current;
                 }
             }
             winner["victory"] = leader;
-            console.log('winner', winner);
         };
         return service;
     });
