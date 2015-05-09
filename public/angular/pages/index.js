@@ -7,7 +7,7 @@
 
     /**
      * Controller: USStateController
-     *
+     * Initialize variables.
      */
     app.controller('USStateController', ["$scope", 'USStatesList', function($scope, getStatesList) {
         getStatesList().then(function (states) {
@@ -26,7 +26,7 @@
      * Directive: stateForm
      * Take the form input Event and use it to dump the state object into $scope.
      */
-    app.directive('stateForm', ['USStates', function(USStates) {
+    app.directive('stateForm', [function() {
         return {
             restrict: 'E',
             templateUrl: 'angular/elements/state-form.html',
@@ -53,6 +53,20 @@
                         $scope.state2 = state;
                     });
                 }
+            }
+        }
+    }]);
+
+    /**
+     * Directive: stateResult
+     * Show the values associated with a state attribute.
+     */
+    app.directive('stateResult', [function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'angular/elements/state-result.html',
+            scope: {
+                state: '='
             }
         }
     }]);

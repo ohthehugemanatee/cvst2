@@ -29,52 +29,12 @@
 		<h3><em>Ultimate Grudge Smackdown Fight to the Death</em></h3>
 	</div>
 	<div ng-controller="USStateController as usStateCtrl" class="col-lg-12">
-		<form name="usStateForm" ng-submit="selectState($event)" novalidate>
-			<div class="col-lg-6">
-				<div class="panel panel-primary panel-material-blue text-center">
-					<div class="panel-heading text-uppercase">
-						<div class="panel-title"><strong>Select a US State</strong></div>
-					</div>
-					<div class="panel-body">
-						<select class="form-control" ng-init="stateid1='bug'" ng-model="stateid1" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
-					</div>
-			</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="panel panel-primary panel-material-red text-center">
-					<div class="panel-heading text-uppercase">
-						<div class="panel-title"><strong>Select another US State</strong></div>
-					</div>
-					<div class="panel-body">
-						<select class="form-control" ng-model="stateid2" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-12 text-center">
-				<button type="submit" class="btn btn-primary btn-lg btn-success" value="update">Fight!</button>
-			</div>
-		</form>
+        <state-form stateslist="stateslist" state1="state1" state2="state2"></state-form>
 
 		<div class="states">
 			<div class="state1 col-lg-5"><!-- ng-show="state1" -->
 				<div class="panel panel-primary panel-material-blue">
-					<div class="panel-heading text-center text-uppercase">
-						<div class="panel-title"><strong>Alabama{{state1.name}}</strong></div>
-					</div>
-					<div class="panel-body">
-						<table class="table table-striped table-hover">
-							<tbody>
-								<tr>
-									<td><strong>Toilets per capita</strong></td>
-									<td>999{{state1.toilets}}</td>
-								</tr>
-								<tr>
-									<td><strong>Obesity per capita</strong></td>
-									<td>45%{{state1.obesity}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+                    <state-result state="state1"></state-result>
 				</div>
 			</div>
 
@@ -82,27 +42,8 @@
 
 			<div class="state1 col-lg-5"><!-- ng-show="state1" -->
 				<div class="panel panel-primary panel-material-red">
-					<div class="panel-heading text-center text-uppercase">
-						<div class="panel-title"><strong>Maryland{{state1.name}}</strong></div>
-					</div>
-					<div class="panel-body">
-						<table class="table table-striped table-hover">
-							<tbody>
-								<tr>
-									<td><strong>Toilets per capita</strong></td>
-									<td>999{{state1.toilets}}</td>
-								</tr>
-								<tr>
-									<td><strong>Obesity per capita</strong></td>
-									<td>45%{{state1.obesity}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+                    <state-result state="state2"></state-result>
 				</div>
-			</div>
-
-			<div class="winner">
 			</div>
 		</div>
 	</div>
