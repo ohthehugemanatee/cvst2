@@ -35,7 +35,7 @@
                 state1: '=',
                 state2: '='
             },
-            controller: function($scope, USStates) {
+            controller: function($scope, USStates, winnerTally) {
                 $scope.selectState = function ($event) {
                     // Don't fire if it's the default value, or if the form is invalid.
                     $event.preventDefault();
@@ -46,12 +46,17 @@
                     USStates.getter($scope.stateid1).then(function (data) {
                         var state = USStates.reducer(data);
                         $scope.state1 = state;
+                        winnerTally.tally($scope.state1, $scope.state2);
                     });
 
                     USStates.getter($scope.stateid2).then(function (data) {
                         var state = USStates.reducer(data);
                         $scope.state2 = state;
+                        winnerTally.tally($scope.state1, $scope.state2);
                     });
+
+
+
                 }
             }
         }
@@ -75,7 +80,7 @@
      * Service: WinnerTally
      * Compare the two sets of state results and declare an overall winner.
      */
-    app.factory('winnerTally', ['$scope', function ($scope) {
+    app.factory('winnerTally', function () {
         var service = {};
         // Compare two values, and pick a winner. Returns 1 or 2 for a winner, 3 for a tie.
         service.vote = function (value1, value2) {
@@ -96,37 +101,37 @@
                 2:0,
                 3:0
             };
-            for (key in state1) {
+
+            for (var key in state1) {
                 // Get the winner from each field.
                 var result = this.vote(state1[key], state2[key]);
                 // Add the point to the scoreboard.
                 score[result]++;
-                // Set a variable to indicate when a state wins.
-                if (result = 3) {
-                    $scope[state1][key][winner] = 'tie';
-                }
-                score[result]++;
+                // Set a variable to indicate when a state wins for each field.
+                state1["winner"] = {};
+                state2["winner"] = {};
                 if (result == 3) {
-                    $scope[state1][key].winner = 'tie';
-                    $scope[state2][key].winner = 'tie';
+                    state1["winner"][key] = true;
+                    state2["winner"][key] = true;
                 }
                 else {
-                    $scope['state' + result][key].winner = true;
+                   window['state' + result]["winner"][key] = true;
                 }
-
             }
-            // Stick value in scope to tell who won.
+            // Set a variable to indicate who wins overall.
             var hiscore = 0;
             var leader = 1;
             for (current in score) {
-                if (score[current] > score[leader]) {
+                if (score[current] > leader) {
                     leader = current;
                 }
             }
-            $scope.winner = leader;
+            console.log('score', score);
+            console.log('leader', leader);
+            window['state' + leader].victory = true;
         };
         return service;
-    }]);
+    });
 
 
     /**
