@@ -41,6 +41,13 @@
                         return;
                     }
 
+                    // Don't fire if the two states are identical, or if one is undefined.
+                    if ($scope.stateid1 == $scope.stateid2
+                    || !$scope.stateid1
+                    || !$scope.stateid2) {
+                        return;
+                    }
+
                     USStates.getter($scope.stateid1).then(function (data) {
                         var state = USStates.reducer(data);
                         $scope["statedata"]["state1"] = state;
