@@ -1,17 +1,19 @@
-<div class="panel-heading text-center text-uppercase">
-    <div class="panel-title"><strong>{{state.name}}</strong></div>
-</div>
-<div class="panel-body">
-    <table class="table table-striped table-hover">
-        <tbody>
-        <tr ng-class="{ 'winning-row' : winner.field_fiber == state.statenum }">
-            <td><strong>Fiber optic connections</strong></td>
-            <td>{{state.field_fiber}}</td>
-        </tr>
-        <tr ng-class="{ 'winning-row' : winner.field_cable_modems == state.statenum }">
-            <td><strong>Cable modems</strong></td>
-            <td>{{state.field_cable_modems}}</td>
-        </tr>
-        </tbody>
-    </table>
+<div class="panel panel-primary panel-material-blue" ng-class="{ winner : winner.victory == state.statenum }">
+    <div class="panel-heading text-center text-uppercase"  >
+        <div class="panel-title"><strong>{{state.name}}</strong></div>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <tbody>
+            <tr ng-class="{ 'winning-row' : winner.field_fiber == state.statenum }">
+                <td><strong>Fiber optic connections</strong></td>
+                <td>{{state.field_fiber}}</td>
+            </tr>
+            <tr ng-class="{ 'winning-row' : winner.field_cable_modems == state.statenum }">
+                <td><strong>Cable modems</strong></td>
+                <td>{{state.field_cable_modems}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
