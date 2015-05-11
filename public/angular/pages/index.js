@@ -10,13 +10,14 @@
      * Initialize variables.
      */
     app.controller('USStateController', ["$scope", 'USStatesList', function($scope, getStatesList) {
-        getStatesList().then(function (states) {
-            $scope.stateslist = states;
-        });
+        $scope.stateslist = [
+            'Alabama',
+            'Arkansas',
+            'Hawaii'
+        ];
 
         $scope.stateid1 = '';
         $scope.stateid2 = '';
-
         $scope.statedata = {};
     }]);
 
@@ -148,24 +149,14 @@
      * Get a US statelist.
      **/
     app.factory('USStatesList', ['$http', '$q', function ($http, $q) {
-        return function (stateslist) {
-            // Make the API call.
-            var request = $http.get('http://cvst-backend.dev.nodesymphony.com/states');
-
-            // When request changes state, either return the state object or reject.
-            return request.then(function(data) {
-                if (data.data[0]) {
-                    // if there's a result set, take it..
-                    return data.data;
-                } else {
-                    // even though $http.get was successful, we got no results. What a let down.
-                    return $q.reject(new Error("No results returned for the states list."));
-                }
-            }, function(reason) {
-                // http request failed, apparently.
-                return $q.reject(new Error("HTTP request failed with reason: " + reason));
-            });
+        return function() {
+            return [
+                'Alabama',
+                'Arkansas',
+                'Hawaii'
+            ];
         }
+
     }]);
 
 
