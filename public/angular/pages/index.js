@@ -16,7 +16,6 @@
 
         $scope.stateid1 = '';
         $scope.stateid2 = '';
-
         $scope.statedata = {};
     }]);
 
@@ -157,13 +156,7 @@
                 if (data.data[0]) {
                     // if there's a result set, take it..
                     return data.data;
-                } else {
-                    // even though $http.get was successful, we got no results. What a let down.
-                    return $q.reject(new Error("No results returned for the states list."));
                 }
-            }, function(reason) {
-                // http request failed, apparently.
-                return $q.reject(new Error("HTTP request failed with reason: " + reason));
             });
         }
     }]);
@@ -187,13 +180,7 @@
                 if (result.data) {
                     // If there's a result set, return it.
                     return result.data;
-                } else {
-                    // even though $http.get was successful, we got no results. What a let down.
-                    return $q.reject(new Error("No state with state ID " + stateid));
                 }
-            }, function(reason) {
-                // http request failed, apparently.
-                return $q.reject(new Error("HTTP request failed with reason: " + reason));
             });
         };
 
@@ -209,22 +196,8 @@
                         if (data[result][key].length > 0) {
                             var value = data[result][key];
                             if (!reduced[key]) {
-                                // If we don't have a value for this field yet, just set it.
+                                // If we don't have a value for this field yet, set it.
                                 reduced[key] = value;
-                            }
-                            else {
-                                // We already have a value for this field, so try appending numbers to the field name until
-                                // we find one that's not set yet. So duplicate values will look like reduced.field_value and
-                                // reduced.field_value2.
-                                var i = 0;
-                                while (data[result][key]) {
-                                    var ourkey = key +i;
-                                    if (!reduced[ourkey]) {
-                                        reduced[ourkey] = value;
-                                        data[result][key] = null;
-                                    }
-                                    i++;
-                                }
                             }
                         }
                     }
