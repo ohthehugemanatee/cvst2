@@ -1,12 +1,12 @@
 <form name="usStateForm" ng-submit="selectState($event)" novalidate>
   <div>Select a US State</div>
   <select ng-model="stateid1">
-      <option ng-repeat="state in stateslist">{{state}}</option>
+    <option ng-repeat="state in stateslist">{{state}}</option>
   </select>
   <div>VS.</div>
   <div>Select another US State</div>
   <select ng-model="stateid2">
-      <option ng-repeat="state in stateslist">{{state}}</option>
+    <option ng-repeat="state in stateslist">{{state}}</option>
   </select>
   <button type="submit" value="update">Fight!</button>
 </form>
