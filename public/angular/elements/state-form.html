@@ -1,26 +1,26 @@
 <form name="usStateForm" ng-submit="selectState($event)" novalidate>
-    <div class="col-lg-5">
-        <div class="panel panel-primary panel-material-blue text-center">
-            <div class="panel-heading text-uppercase">
-                <div class="panel-title"><strong>Select a US State</strong></div>
-            </div>
-            <div class="panel-body">
-                <select class="form-control" ng-model="stateid1" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
-            </div>
-        </div>
-    </div>
-		<div class="versus h1 col-lg-2 text-center">VS.</div>
-    <div class="col-lg-5">
-        <div class="panel panel-primary panel-material-indigo text-center">
-            <div class="panel-heading text-uppercase">
-                <div class="panel-title"><strong>Select another US State</strong></div>
-            </div>
-            <div class="panel-body">
-                <select class="form-control" ng-model="stateid2" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-12 text-center">
-        <button type="submit" class="btn btn-primary btn-lg btn-warning" value="update">Fight!</button>
-    </div>
+	<div class="col-lg-5">
+		<div class="panel panel-primary panel-material-blue text-center">
+			<div class="panel-heading text-uppercase">
+				<div class="panel-title"><strong>Select a US State</strong></div>
+			</div>
+			<div class="panel-body">
+				<select class="form-control" ng-model="stateid1" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
+			</div>
+		</div>
+	</div>
+	<div class="versus h1 col-lg-2 text-center">VS.</div>
+	<div class="col-lg-5">
+		<div class="panel panel-primary panel-material-indigo text-center">
+			<div class="panel-heading text-uppercase">
+				<div class="panel-title"><strong>Select another US State</strong></div>
+			</div>
+			<div class="panel-body">
+				<select class="form-control" ng-model="stateid2" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12 text-center">
+		<button type="submit" class="btn btn-primary btn-lg btn-warning" value="update">Fight!</button>
+	</div>
 </form>

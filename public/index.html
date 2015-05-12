@@ -29,18 +29,16 @@
 			<h3><em>Ultimate Grudge Smackdown Fight to the Death</em></h3>
 			</div>
 			<div ng-controller="USStateController as usStateCtrl" class="col-lg-12">
-					<state-form stateslist="stateslist" statedata="statedata" winner="winner"></state-form>
-					<div>
-							<div class="col-lg-5" ng-show="statedata.state1">
-									<state-result state="statedata.state1" winner="winner"></state-result>
-							</div>
-	
-							<div class="versus h1 col-lg-2 text-center"></div>
-	
-							<div class="col-lg-5" ng-show="statedata.state2">
-									<state-result state="statedata.state2" winner="winner"></state-result>
-							</div>
+				<state-form stateslist="stateslist" statedata="statedata" winner="winner"></state-form>
+				<div>
+					<div class="col-lg-5" ng-show="statedata.state1">
+						<state-result state="statedata.state1" winner="winner"></state-result>
 					</div>
+					<div class="versus h1 col-lg-2 text-center"></div>
+					<div class="col-lg-5" ng-show="statedata.state2">
+						<state-result state="statedata.state2" winner="winner"></state-result>
+					</div>
+				</div>
 		</div>
 	</div>
 	<!-- My angular modules -->
