@@ -17,34 +17,31 @@
 	<title>State vs State</title>
 </head>
 <body role="document">
-<div class="container">
-	<div class="page-header jumbotron text-center">
-		<h1><span class="text-blue"><b>State</b></span> vs. <span class="text-indigo"><b>State</b></span></h1>
-		<div>
-			<span class="btn btn-material-indigo btn-fab btn-raised mdi-action-grade"></span>
-			<span class="btn btn-material-blue btn-fab btn-raised mdi-action-grade"></span>
-			<span class="btn btn-material-indigo btn-fab btn-raised mdi-action-grade"></span>
-			<span class="btn btn-material-blue btn-fab btn-raised mdi-action-grade"></span>
+	<div class="container">
+		<div class="page-header jumbotron text-center">
+			<h1><span class="text-blue"><b>State</b></span> vs. <span class="text-indigo"><b>State</b></span></h1>
+			<div>
+				<span class="btn btn-material-indigo btn-fab btn-raised mdi-action-grade"></span>
+				<span class="btn btn-material-blue btn-fab btn-raised mdi-action-grade"></span>
+				<span class="btn btn-material-indigo btn-fab btn-raised mdi-action-grade"></span>
+				<span class="btn btn-material-blue btn-fab btn-raised mdi-action-grade"></span>
+			</div>
+			<h3><em>Ultimate Grudge Smackdown Fight to the Death</em></h3>
+			</div>
+			<div ng-controller="USStateController as usStateCtrl" class="col-lg-12">
+				<state-form stateslist="stateslist" statedata="statedata" winner="winner"></state-form>
+				<div>
+					<div class="col-lg-5" ng-show="statedata.state1">
+						<state-result state="statedata.state1" winner="winner"></state-result>
+					</div>
+					<div class="versus h1 col-lg-2 text-center"></div>
+					<div class="col-lg-5" ng-show="statedata.state2">
+						<state-result state="statedata.state2" winner="winner"></state-result>
+					</div>
+				</div>
 		</div>
-		<h3><em>Ultimate Grudge Smackdown Fight to the Death</em></h3>
-    </div>
-    <div ng-controller="USStateController as usStateCtrl" class="col-lg-12">
-        <state-form stateslist="stateslist" statedata="statedata" winner="winner"></state-form>
-
-        <div class="states">
-            <div class="col-lg-5" ng-show="statedata.state1" >
-                <state-result state="statedata.state1" winner="winner"></state-result>
-            </div>
-
-            <div class="versus h1 col-lg-2 text-center"></div>
-
-            <div class="col-lg-5" ng-show="statedata.state2" >
-                <state-result state="statedata.state2" winner="winner"></state-result>
-            </div>
-        </div>
 	</div>
-</div>
-<!-- My angular modules -->
-<script src="angular/pages/index.js"></script>
+	<!-- My angular modules -->
+	<script src="angular/pages/index.js"></script>
 </body>
 </html>
