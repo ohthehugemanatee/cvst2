@@ -1,17 +1,19 @@
-<h3>{{state.name}}</h3>
-<table>
-	<tbody>
-		<tr ng-class="{ 'winning-row' : winner.field_fiber == state.statenum }">
-			<td><strong>Fiber optic connections</strong></td>
-			<td>{{state.field_fiber}}</td>
-		</tr>
-        <tr ng-class="{ 'winning-row' : winner.field_singles == state.statenum }">
-            <td><strong>Singles</strong></td>
-            <td>{{state.field_singles}}</td>
-        </tr>
-        <tr ng-class="{ 'winning-row' : winner.field_toilets == state.statenum }">
-            <td><strong>Toilets</strong></td>
-            <td>{{state.field_toilets}}</td>
-        </tr>
-	</tbody>
-</table>
+<div>
+	<h3>{{state.name}}<span ng-show="winner.victory == state.statenum"> - WINNER!!</span></h3>
+	<table>
+		<tbody>
+			<tr ng-class="{ 'winning-row' : winner.field_fiber == state.statenum }">
+				<td><strong>Fiber optic connections</strong></td>
+				<td>{{state.field_fiber}}</td>
+			</tr>
+					<tr ng-class="{ 'winning-row' : winner.field_singles == state.statenum }">
+							<td><strong>Singles</strong></td>
+							<td>{{state.field_singles}}</td>
+					</tr>
+					<tr ng-class="{ 'winning-row' : winner.field_toilets == state.statenum }">
+							<td><strong>Toilets</strong></td>
+							<td>{{state.field_toilets}}</td>
+					</tr>
+		</tbody>
+	</table>
+</div>
