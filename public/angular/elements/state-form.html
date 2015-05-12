@@ -1,26 +1,8 @@
 <form name="usStateForm" ng-submit="selectState($event)" novalidate>
-    <div>
-        <div>
-            <div>
-                <div>Select a US State</div>
-            </div>
-            <div>
-                <select ng-model="stateid1" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
-            </div>
-        </div>
-    </div>
-		<div>VS.</div>
-    <div>
-        <div>
-            <div>
-                <div>Select another US State</div>
-            </div>
-            <div>
-                <select ng-model="stateid2" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
-            </div>
-        </div>
-    </div>
-    <div>
-        <button type="submit" value="update">Fight!</button>
-    </div>
+  <div>Select a US State</div>
+  <select ng-model="stateid1" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
+  <div>VS.</div>
+  <div>Select another US State</div>
+  <select ng-model="stateid2" ng-options="state.tid[0].value as state.name[0].value for state in stateslist"></select>
+  <button type="submit" value="update">Fight!</button>
 </form>

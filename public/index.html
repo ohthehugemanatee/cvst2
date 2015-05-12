@@ -21,21 +21,18 @@
 	<div>
 		<h1>State vs. State</h1>
 		<h3><em>Ultimate Grudge Smackdown Fight to the Death</em></h3>
-    </div>
-    <div ng-controller="USStateController as usStateCtrl">
-        <state-form stateslist="stateslist" statedata="statedata" winner="winner"></state-form>
-
-        <div>
-            <div ng-show="statedata.state1" >
-                <state-result state="statedata.state1" winner="winner"></state-result>
-            </div>
-
-            <div></div>
-
-            <div ng-show="statedata.state2" >
-                <state-result state="statedata.state2" winner="winner"></state-result>
-            </div>
-        </div>
+	</div>
+	<div ng-controller="USStateController as usStateCtrl">
+		<state-form stateslist="stateslist" statedata="statedata" winner="winner"></state-form>
+		<div>
+			<div ng-show="statedata.state1" >
+				<state-result state="statedata.state1" winner="winner"></state-result>
+			</div>
+			<div></div>
+			<div ng-show="statedata.state2" >
+				<state-result state="statedata.state2" winner="winner"></state-result>
+			</div>
+		</div>
 	</div>
 </div>
 <!-- My angular modules -->

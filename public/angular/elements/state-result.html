@@ -1,21 +1,13 @@
-<div>
-    <div>
-        <div>
-						<h3>{{state.name}}</h3>
-				</div>
-    </div>
-    <div>
-        <table>
-            <tbody>
-            <tr ng-class="{ 'winning-row' : winner.field_fiber == state.statenum }">
-                <td><strong>Fiber optic connections</strong></td>
-                <td>{{state.field_fiber}}</td>
-            </tr>
-            <tr ng-class="{ 'winning-row' : winner.field_cable_modems == state.statenum }">
-                <td><strong>Cable modems</strong></td>
-                <td>{{state.field_cable_modems}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<h3>{{state.name}}</h3>
+<table>
+	<tbody>
+		<tr ng-class="{ 'winning-row' : winner.field_fiber == state.statenum }">
+			<td><strong>Fiber optic connections</strong></td>
+			<td>{{state.field_fiber}}</td>
+		</tr>
+		<tr ng-class="{ 'winning-row' : winner.field_cable_modems == state.statenum }">
+			<td><strong>Cable modems</strong></td>
+			<td>{{state.field_cable_modems}}</td>
+		</tr>
+	</tbody>
+</table>
