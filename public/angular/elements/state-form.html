@@ -1,12 +1,34 @@
 <form name="usStateForm" ng-submit="selectState($event)" novalidate>
-  <div>Select a US State</div>
-  <select ng-model="stateid1">
-    <option ng-repeat="state in stateslist">{{state}}</option>
-  </select>
-  <div>VS.</div>
-  <div>Select another US State</div>
-  <select ng-model="stateid2">
-    <option ng-repeat="state in stateslist">{{state}}</option>
-  </select>
-  <button type="submit" value="update">Fight!</button>
+  <div class="col-lg-5">
+		<div class="panel panel-primary panel-material-blue text-center">
+			<div class="panel-heading text-uppercase">
+				<div class="panel-title">
+					<strong>Select a US State</strong>
+				</div>
+			</div>
+			<div class="panel-body">
+				<select ng-model="stateid1" class="form-control">
+					<option ng-repeat="state in stateslist">{{state}}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+  <div class="col-lg-2 h1 text-center">VS.</div>
+  <div class="col-lg-5">
+		<div class="panel panel-primary panel-material-indigo text-center">
+			<div class="panel-heading text-uppercase">
+				<div class="panel-title">
+					<strong>Select another US State</strong>
+				</div>
+			</div>
+			<div class="panel-body">
+				<select ng-model="stateid2" class="form-control">
+					<option ng-repeat="state in stateslist">{{state}}</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12 text-center">
+		<button type="submit" value="update" class="btn btn-primary btn-large btn-warning">Fight!</button>
+	</div>
 </form>

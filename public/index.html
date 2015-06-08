@@ -17,19 +17,25 @@
 	<title>State vs State</title>
 </head>
 <body role="document">
-<div>
-	<div>
+<div class="container">
+	<div class="page-header jumbotron text-center">
 		<h1>State vs. State</h1>
+		<div>
+			<span class="btn btn-material-indigo btn-fab btn-raised mdi-action-grade"></span>
+			<span class="btn btn-material-blue btn-fab btn-raised mdi-action-grade"></span>
+			<span class="btn btn-material-indigo btn-fab btn-raised mdi-action-grade"></span>
+			<span class="btn btn-material-blue btn-fab btn-raised mdi-action-grade"></span>
+		</div>
 		<h3><em>Ultimate Grudge Smackdown Fight to the Death</em></h3>
 	</div>
-	<div ng-controller="USStateController as usStateCtrl">
+	<div ng-controller="USStateController as usStateCtrl" class="col-lg-12">
 		<state-form stateslist="stateslist" statedata="statedata" winner="winner"></state-form>
 		<div>
-			<div ng-show="statedata.state1" >
+			<div ng-show="statedata.state1" class="col-lg-5">
 				<state-result state="statedata.state1" winner="winner"></state-result>
 			</div>
-			<div></div>
-			<div ng-show="statedata.state2" >
+			<div class="col-lg-2"></div>
+			<div ng-show="statedata.state2" class="col-lg-5">
 				<state-result state="statedata.state2" winner="winner"></state-result>
 			</div>
 		</div>
