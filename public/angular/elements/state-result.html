@@ -14,10 +14,14 @@
 					<td><strong>Fiber optic connections</strong></td>
 					<td>{{state.field_fiber}}</td>
 				</tr>
-				<tr ng-class="{ 'winning-row' : winner.field_cable_modems == state.statenum }">
-					<td><strong>Cable modems</strong></td>
-					<td>{{state.field_cable_modems}}</td>
+				<tr ng-class="{ 'winning-row' : winner.field_toilets == state.statenum }">
+					<td><strong>Toilets</strong></td>
+					<td>{{state.field_toilets}}</td>
 				</tr>
+        <tr ng-class="{ 'winning-row' : winner.field_singles == state.statenum }">
+          <td><strong>Singles</strong></td>
+          <td>{{state.field_singles}}</td>
+        </tr>
 			</tbody>
 		</table>
 	</div>
